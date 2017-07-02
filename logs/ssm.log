@@ -1,0 +1,5 @@
+[INFO] [2017-06-20 18:39:31][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2017-06-20 18:39:31][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@6df97b55: startup date [Tue Jun 20 18:39:31 CST 2017]; root of context hierarchy
+[INFO] [2017-06-20 18:39:31][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2017-06-20 18:39:32][org.hzlwyykj.testMybatis.TestMyBatis][{"did":1,"opentime":1489655598000,"password":"d9f6e636e369552839e7bb8057aeb8da","realname":"aaa","telephone":"123","userid":8,"username":"aaa"},{"did":2,"opentime":1489655621000,"password":"003d81296cbed643579b24d1cf6c907c","realname":"bbb","telephone":"123","userid":9,"username":"bbb"}]
+[INFO] [2017-06-20 18:39:32][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@6df97b55: startup date [Tue Jun 20 18:39:31 CST 2017]; root of context hierarchy

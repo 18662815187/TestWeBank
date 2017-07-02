@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzlwyykj.dao.UserMapper">
+	<resultMap id="BaseResultMap" type="com.hzlwyykj.model.User">
+		<id column="USERID" jdbcType="INTEGER" property="userid" />
+		<result column="USERNAME" jdbcType="VARCHAR" property="username" />
+		<result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+		<result column="REALNAME" jdbcType="VARCHAR" property="realname" />
+		<result column="DID" jdbcType="INTEGER" property="did" />
+		<result column="JID" jdbcType="INTEGER" property="jid" />
+		<result column="OPENTIME" jdbcType="TIMESTAMP" property="opentime" />
+		<result column="SEX" jdbcType="VARCHAR" property="sex" />
+		<result column="CITY" jdbcType="VARCHAR" property="city" />
+		<result column="PID" jdbcType="VARCHAR" property="pid" />
+		<result column="TELEPHONE" jdbcType="VARCHAR" property="telephone" />
+		<result column="EMAIL" jdbcType="VARCHAR" property="email" />
+		<result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
+		<result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+		<result column="MARRIED" jdbcType="INTEGER" property="married" />
+		<result column="salt" jdbcType="VARCHAR" property="salt" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		USERID,USERNAME,PASSWORD,REALNAME,DID,JID,OPENTIME,SEX,CITY,PID,TELEPHONE,EMAIL,MOBILE,ADDRESS,MARRIED,salt
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_user
+		where USERID = #{userid,jdbcType=INTEGER}
+	</select>
+	<select id="findByUserName" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select * from t_user where username=#{0} and password=#{1}
+	</select>
+	<select id="getAllUser" resultMap="BaseResultMap">
+		select * from t_user
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from t_user
+		where USERID = #{userid,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.hzlwyykj.model.User">
+		insert into t_user (USERID,
+		USERNAME, PASSWORD,
+		REALNAME, DID, JID,
+		OPENTIME, SEX, CITY,
+		PID,
+		TELEPHONE, EMAIL,
+		MOBILE, ADDRESS, MARRIED,
+		salt)
+		values
+		(#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR},
+		#{realname,jdbcType=VARCHAR},
+		#{did,jdbcType=INTEGER}, #{jid,jdbcType=INTEGER},
+		#{opentime,jdbcType=TIMESTAMP}, #{sex,jdbcType=VARCHAR},
+		#{city,jdbcType=VARCHAR},
+		#{pid,jdbcType=VARCHAR},
+		#{telephone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+		#{mobile,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
+		#{married,jdbcType=INTEGER},
+		#{salt,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.hzlwyykj.model.User">
+		insert into t_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userid != null">
+				USERID,
+			</if>
+			<if test="username != null">
+				USERNAME,
+			</if>
+			<if test="password != null">
+				PASSWORD,
+			</if>
+			<if test="realname != null">
+				REALNAME,
+			</if>
+			<if test="did != null">
+				DID,
+			</if>
+			<if test="jid != null">
+				JID,
+			</if>
+			<if test="opentime != null">
+				OPENTIME,
+			</if>
+			<if test="sex != null">
+				SEX,
+			</if>
+			<if test="city != null">
+				CITY,
+			</if>
+			<if test="pid != null">
+				PID,
+			</if>
+			<if test="telephone != null">
+				TELEPHONE,
+			</if>
+			<if test="email != null">
+				EMAIL,
+			</if>
+			<if test="mobile != null">
+				MOBILE,
+			</if>
+			<if test="address != null">
+				ADDRESS,
+			</if>
+			<if test="married != null">
+				MARRIED,
+			</if>
+			<if test="salt != null">
+				salt,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="userid != null">
+				#{userid,jdbcType=INTEGER},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="realname != null">
+				#{realname,jdbcType=VARCHAR},
+			</if>
+			<if test="did != null">
+				#{did,jdbcType=INTEGER},
+			</if>
+			<if test="jid != null">
+				#{jid,jdbcType=INTEGER},
+			</if>
+			<if test="opentime != null">
+				#{opentime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="sex != null">
+				#{sex,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				#{city,jdbcType=VARCHAR},
+			</if>
+			<if test="pid != null">
+				#{pid,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null">
+				#{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				#{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="married != null">
+				#{married,jdbcType=INTEGER},
+			</if>
+			<if test="salt != null">
+				#{salt,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hzlwyykj.model.User">
+		update t_user
+		<set>
+			<if test="username != null">
+				USERNAME = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				PASSWORD = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="realname != null">
+				REALNAME = #{realname,jdbcType=VARCHAR},
+			</if>
+			<if test="did != null">
+				DID = #{did,jdbcType=INTEGER},
+			</if>
+			<if test="jid != null">
+				JID = #{jid,jdbcType=INTEGER},
+			</if>
+			<if test="opentime != null">
+				OPENTIME = #{opentime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="sex != null">
+				SEX = #{sex,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				CITY = #{city,jdbcType=VARCHAR},
+			</if>
+			<if test="pid != null">
+				PID = #{pid,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null">
+				TELEPHONE = #{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				EMAIL = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				MOBILE = #{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				ADDRESS = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="married != null">
+				MARRIED = #{married,jdbcType=INTEGER},
+			</if>
+			<if test="salt != null">
+				salt = #{salt,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where USERID = #{userid,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hzlwyykj.model.User">
+		update t_user
+		set
+		USERNAME = #{username,jdbcType=VARCHAR},
+		PASSWORD =
+		#{password,jdbcType=VARCHAR},
+		REALNAME = #{realname,jdbcType=VARCHAR},
+		DID = #{did,jdbcType=INTEGER},
+		JID = #{jid,jdbcType=INTEGER},
+		OPENTIME =
+		#{opentime,jdbcType=TIMESTAMP},
+		SEX = #{sex,jdbcType=VARCHAR},
+		CITY =
+		#{city,jdbcType=VARCHAR},
+		PID = #{pid,jdbcType=VARCHAR},
+		TELEPHONE =
+		#{telephone,jdbcType=VARCHAR},
+		EMAIL = #{email,jdbcType=VARCHAR},
+		MOBILE = #{mobile,jdbcType=VARCHAR},
+		ADDRESS =
+		#{address,jdbcType=VARCHAR},
+		MARRIED = #{married,jdbcType=INTEGER},
+		salt = #{salt,jdbcType=VARCHAR}
+		where USERID =
+		#{userid,jdbcType=INTEGER}
+	</update>
+	<select id="query" parameterType="baseVo" resultType="user">
+		select * from t_user
+		<where>
+			<if test="keywords!=null">
+				username like "%"#{keywords}"%"
+				or realname like
+				"%"#{keywords}"%"
+			</if>
+		</where>
+	</select>
+	<!-- parameterType使用map可传一个以上参数 -->
+	<insert id="insertUidAndRid" parameterType="map">
+		insert into t_user_role(userid,rid) values(#{userid},#{rid})
+	</insert>
+	<!-- 根据uid删除附表信息 -->
+	<delete id="deleteRidAndUidByUid" parameterType="int">
+	delete from t_user_role where userid=#{value}
+	</delete>
+	<!-- 查询最新的uid -->
+	<select id="selectLastId" resultType="int" >
+	SELECT LAST_INSERT_ID() AS ID
+	</select>
+</mapper>
