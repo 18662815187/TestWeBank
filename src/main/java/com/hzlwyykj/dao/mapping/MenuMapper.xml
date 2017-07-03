@@ -108,4 +108,12 @@
 		SECURITYNAME = #{securityname,jdbcType=VARCHAR}
 		where MID = #{mid,jdbcType=INTEGER}
 	</update>
+	<select id="query" parameterType="baseVo" resultType="menu">
+	select * from t_menu 
+	<where>
+	<if test="keywords!=null">
+	menuname like "%"#{keywords}"%"
+	</if>
+	</where>
+	</select>
 </mapper>
