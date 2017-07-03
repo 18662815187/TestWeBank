@@ -60,7 +60,7 @@
 			<select name="pid">
             <option  value="0">---本身就是一级菜单---</option>
             <c:forEach items="${menulist }" var="m">
-            	<option value="${m.mid }" ${m.mid==menu.pid ?'selected':'' }>${m.mid } ${m.menuname }</option>
+            	<option value="${m.mid}" ${m.mid==menu.pid?'selected':''}>${m.mid} ${m.menuname }</option>
             </c:forEach>
             </select>
 		</td>

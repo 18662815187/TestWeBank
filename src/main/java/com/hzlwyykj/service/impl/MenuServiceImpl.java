@@ -32,4 +32,27 @@ public class MenuServiceImpl implements IMenuService {
 		PageInfo<Menu> pageInfo = new PageInfo<>(menus);
 		return pageInfo;
 	}
+
+	// 新增
+	@Override
+	public void save(Menu menu) throws RuntimeException {
+		menuDao.insertSelective(menu);
+	}
+
+	// 更新
+	@Override
+	public void update(Menu menu) throws RuntimeException {
+		menuDao.updateByPrimaryKey(menu);
+	}
+
+	// 根据主键查询
+	@Override
+	public Menu findById(Integer id) {
+		return menuDao.selectByPrimaryKey(id);
+	}
+	//删除
+	@Override
+	public void deleteById(Integer id) {
+		menuDao.deleteByPrimaryKey(id);
+	}
 }
