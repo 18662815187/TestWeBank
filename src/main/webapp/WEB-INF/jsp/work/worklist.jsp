@@ -44,16 +44,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
 <form class="form-inline definewidth m20" action="work/queryAll" method="post">    
-    关键字：
+  工单号：
     <input type="text" name="workorderid" id="workorderid"
     class="abc input-default" placeholder="工单编号" value="${vo.workorderid }">&nbsp;&nbsp;
-    <input type="text" name="customername" id="customername"
+   客户姓名： <input type="text" name="customername" id="customername"
     class="abc input-default" placeholder="客户姓名查询" value="${vo.customername }">&nbsp;&nbsp;
-    <input type="text" name="centificatenumber" id="centificatenumber"
+    证件号码：<input type="text" name="centificatenumber" id="centificatenumber"
     class="abc input-default" placeholder="证件号码查询" value="${vo.centificatenumber }">&nbsp;&nbsp;
-    <input type="text" name="status" id="status"
+   状态： <input type="text" name="status" id="status"
     class="abc input-default" placeholder="状态查询" value="${vo.status }">&nbsp;&nbsp;
-    <input type="text" name="handlegroup" id="handlegroup"
+ 所在小组： <input type="text" name="handlegroup" id="handlegroup"
     class="abc input-default" placeholder="所在小组查询" value="${vo.handlegroup }">&nbsp;&nbsp;  
     
     <button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp; 
