@@ -1,164 +1,239 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hzlwyykj.dao.WorkorderMapper">
-  <resultMap id="BaseResultMap" type="com.hzlwyykj.model.Workorder">
-    <id column="workorderid" jdbcType="VARCHAR" property="workorderid" />
-    <result column="customerid" jdbcType="INTEGER" property="customerid" />
-    <result column="customername" jdbcType="VARCHAR" property="customername" />
-    <result column="centificatenumber" jdbcType="VARCHAR" property="centificatenumber" />
-    <result column="aging" jdbcType="INTEGER" property="aging" />
-    <result column="problemtype" jdbcType="VARCHAR" property="problemtype" />
-    <result column="handlegroup" jdbcType="INTEGER" property="handlegroup" />
-    <result column="handleperson" jdbcType="INTEGER" property="handleperson" />
-    <result column="urgencylevel" jdbcType="VARCHAR" property="urgencylevel" />
-    <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="creatdate" jdbcType="TIMESTAMP" property="creatdate" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    workorderid, customerid, customername, centificatenumber, aging, problemtype, handlegroup, 
-    handleperson, urgencylevel, status, creatdate
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from t_workorder
-    where workorderid = #{workorderid,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from t_workorder
-    where workorderid = #{workorderid,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.hzlwyykj.model.Workorder">
-    insert into t_workorder (workorderid, customerid, customername, 
-      centificatenumber, aging, problemtype, 
-      handlegroup, handleperson, urgencylevel, 
-      status, creatdate)
-    values (#{workorderid,jdbcType=VARCHAR}, #{customerid,jdbcType=INTEGER}, #{customername,jdbcType=VARCHAR}, 
-      #{centificatenumber,jdbcType=VARCHAR}, #{aging,jdbcType=INTEGER}, #{problemtype,jdbcType=VARCHAR}, 
-      #{handlegroup,jdbcType=INTEGER}, #{handleperson,jdbcType=INTEGER}, #{urgencylevel,jdbcType=VARCHAR}, 
-      #{status,jdbcType=INTEGER}, #{creatdate,jdbcType=TIMESTAMP})
-  </insert>
-  <insert id="insertSelective" parameterType="com.hzlwyykj.model.Workorder">
-    insert into t_workorder
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="workorderid != null">
-        workorderid,
-      </if>
-      <if test="customerid != null">
-        customerid,
-      </if>
-      <if test="customername != null">
-        customername,
-      </if>
-      <if test="centificatenumber != null">
-        centificatenumber,
-      </if>
-      <if test="aging != null">
-        aging,
-      </if>
-      <if test="problemtype != null">
-        problemtype,
-      </if>
-      <if test="handlegroup != null">
-        handlegroup,
-      </if>
-      <if test="handleperson != null">
-        handleperson,
-      </if>
-      <if test="urgencylevel != null">
-        urgencylevel,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-      <if test="creatdate != null">
-        creatdate,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="workorderid != null">
-        #{workorderid,jdbcType=VARCHAR},
-      </if>
-      <if test="customerid != null">
-        #{customerid,jdbcType=INTEGER},
-      </if>
-      <if test="customername != null">
-        #{customername,jdbcType=VARCHAR},
-      </if>
-      <if test="centificatenumber != null">
-        #{centificatenumber,jdbcType=VARCHAR},
-      </if>
-      <if test="aging != null">
-        #{aging,jdbcType=INTEGER},
-      </if>
-      <if test="problemtype != null">
-        #{problemtype,jdbcType=VARCHAR},
-      </if>
-      <if test="handlegroup != null">
-        #{handlegroup,jdbcType=INTEGER},
-      </if>
-      <if test="handleperson != null">
-        #{handleperson,jdbcType=INTEGER},
-      </if>
-      <if test="urgencylevel != null">
-        #{urgencylevel,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=INTEGER},
-      </if>
-      <if test="creatdate != null">
-        #{creatdate,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.hzlwyykj.model.Workorder">
-    update t_workorder
-    <set>
-      <if test="customerid != null">
-        customerid = #{customerid,jdbcType=INTEGER},
-      </if>
-      <if test="customername != null">
-        customername = #{customername,jdbcType=VARCHAR},
-      </if>
-      <if test="centificatenumber != null">
-        centificatenumber = #{centificatenumber,jdbcType=VARCHAR},
-      </if>
-      <if test="aging != null">
-        aging = #{aging,jdbcType=INTEGER},
-      </if>
-      <if test="problemtype != null">
-        problemtype = #{problemtype,jdbcType=VARCHAR},
-      </if>
-      <if test="handlegroup != null">
-        handlegroup = #{handlegroup,jdbcType=INTEGER},
-      </if>
-      <if test="handleperson != null">
-        handleperson = #{handleperson,jdbcType=INTEGER},
-      </if>
-      <if test="urgencylevel != null">
-        urgencylevel = #{urgencylevel,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=INTEGER},
-      </if>
-      <if test="creatdate != null">
-        creatdate = #{creatdate,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where workorderid = #{workorderid,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.hzlwyykj.model.Workorder">
-    update t_workorder
-    set customerid = #{customerid,jdbcType=INTEGER},
-      customername = #{customername,jdbcType=VARCHAR},
-      centificatenumber = #{centificatenumber,jdbcType=VARCHAR},
-      aging = #{aging,jdbcType=INTEGER},
-      problemtype = #{problemtype,jdbcType=VARCHAR},
-      handlegroup = #{handlegroup,jdbcType=INTEGER},
-      handleperson = #{handleperson,jdbcType=INTEGER},
-      urgencylevel = #{urgencylevel,jdbcType=VARCHAR},
-      status = #{status,jdbcType=INTEGER},
-      creatdate = #{creatdate,jdbcType=TIMESTAMP}
-    where workorderid = #{workorderid,jdbcType=VARCHAR}
-  </update>
+	<resultMap id="BaseResultMap" type="com.hzlwyykj.model.Workorder">
+		<id column="workorderid" jdbcType="VARCHAR" property="workorderid" />
+		<result column="customerid" jdbcType="INTEGER" property="customerid" />
+		<result column="customername" jdbcType="VARCHAR" property="customername" />
+		<result column="centificatenumber" jdbcType="VARCHAR" property="centificatenumber" />
+		<result column="aging" jdbcType="INTEGER" property="aging" />
+		<result column="problemtype" jdbcType="VARCHAR" property="problemtype" />
+		<result column="handlegroup" jdbcType="INTEGER" property="handlegroup" />
+		<result column="handleperson" jdbcType="INTEGER" property="handleperson" />
+		<result column="urgencylevel" jdbcType="VARCHAR" property="urgencylevel" />
+		<result column="status" jdbcType="INTEGER" property="status" />
+		<result column="creatdate" jdbcType="TIMESTAMP" property="creatdate" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		workorderid, customerid, customername, centificatenumber,
+		aging, problemtype,
+		handlegroup,
+		handleperson, urgencylevel, status,
+		creatdate
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_workorder
+		where workorderid = #{workorderid,jdbcType=VARCHAR}
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		t_workorder
+		where workorderid = #{workorderid,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.hzlwyykj.model.Workorder">
+		insert into t_workorder
+		(workorderid, customerid, customername,
+		centificatenumber, aging,
+		problemtype,
+		handlegroup, handleperson, urgencylevel,
+		status, creatdate)
+		values (#{workorderid,jdbcType=VARCHAR},
+		#{customerid,jdbcType=INTEGER},
+		#{customername,jdbcType=VARCHAR},
+		#{centificatenumber,jdbcType=VARCHAR}, #{aging,jdbcType=INTEGER},
+		#{problemtype,jdbcType=VARCHAR},
+		#{handlegroup,jdbcType=INTEGER},
+		#{handleperson,jdbcType=INTEGER}, #{urgencylevel,jdbcType=VARCHAR},
+		#{status,jdbcType=INTEGER}, #{creatdate,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="com.hzlwyykj.model.Workorder">
+		insert into t_workorder
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="workorderid != null">
+				workorderid,
+			</if>
+			<if test="customerid != null">
+				customerid,
+			</if>
+			<if test="customername != null">
+				customername,
+			</if>
+			<if test="centificatenumber != null">
+				centificatenumber,
+			</if>
+			<if test="aging != null">
+				aging,
+			</if>
+			<if test="problemtype != null">
+				problemtype,
+			</if>
+			<if test="handlegroup != null">
+				handlegroup,
+			</if>
+			<if test="handleperson != null">
+				handleperson,
+			</if>
+			<if test="urgencylevel != null">
+				urgencylevel,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="creatdate != null">
+				creatdate,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="workorderid != null">
+				#{workorderid,jdbcType=VARCHAR},
+			</if>
+			<if test="customerid != null">
+				#{customerid,jdbcType=INTEGER},
+			</if>
+			<if test="customername != null">
+				#{customername,jdbcType=VARCHAR},
+			</if>
+			<if test="centificatenumber != null">
+				#{centificatenumber,jdbcType=VARCHAR},
+			</if>
+			<if test="aging != null">
+				#{aging,jdbcType=INTEGER},
+			</if>
+			<if test="problemtype != null">
+				#{problemtype,jdbcType=VARCHAR},
+			</if>
+			<if test="handlegroup != null">
+				#{handlegroup,jdbcType=INTEGER},
+			</if>
+			<if test="handleperson != null">
+				#{handleperson,jdbcType=INTEGER},
+			</if>
+			<if test="urgencylevel != null">
+				#{urgencylevel,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="creatdate != null">
+				#{creatdate,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hzlwyykj.model.Workorder">
+		update t_workorder
+		<set>
+			<if test="customerid != null">
+				customerid = #{customerid,jdbcType=INTEGER},
+			</if>
+			<if test="customername != null">
+				customername = #{customername,jdbcType=VARCHAR},
+			</if>
+			<if test="centificatenumber != null">
+				centificatenumber =
+				#{centificatenumber,jdbcType=VARCHAR},
+			</if>
+			<if test="aging != null">
+				aging = #{aging,jdbcType=INTEGER},
+			</if>
+			<if test="problemtype != null">
+				problemtype = #{problemtype,jdbcType=VARCHAR},
+			</if>
+			<if test="handlegroup != null">
+				handlegroup = #{handlegroup,jdbcType=INTEGER},
+			</if>
+			<if test="handleperson != null">
+				handleperson = #{handleperson,jdbcType=INTEGER},
+			</if>
+			<if test="urgencylevel != null">
+				urgencylevel = #{urgencylevel,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="creatdate != null">
+				creatdate = #{creatdate,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where workorderid = #{workorderid,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hzlwyykj.model.Workorder">
+		update t_workorder
+		set customerid = #{customerid,jdbcType=INTEGER},
+		customername =
+		#{customername,jdbcType=VARCHAR},
+		centificatenumber =
+		#{centificatenumber,jdbcType=VARCHAR},
+		aging =
+		#{aging,jdbcType=INTEGER},
+		problemtype =
+		#{problemtype,jdbcType=VARCHAR},
+		handlegroup =
+		#{handlegroup,jdbcType=INTEGER},
+		handleperson =
+		#{handleperson,jdbcType=INTEGER},
+		urgencylevel =
+		#{urgencylevel,jdbcType=VARCHAR},
+		status = #{status,jdbcType=INTEGER},
+		creatdate = #{creatdate,jdbcType=TIMESTAMP}
+		where workorderid =
+		#{workorderid,jdbcType=VARCHAR}
+	</update>
+	<!-- 查询所有 -->
+	<select id="getAll" resultMap="BaseResultMap">
+		select * from t_workorder
+	</select>
+	<select id="query" parameterType="workConditionVo" resultType="workorder">
+		SELECT
+		t1.workorderid,
+		t1.customername,
+		t1.centificatenumber,
+		t1.problemtype,
+		t2.name AS
+		problemtypename,
+		t1.handlegroup,
+		t3.name AS
+		handlegroupname,
+		t1.handleperson,
+		t4.USERNAME AS handlepersonname,
+		t1.urgencylevel,
+		t5.name AS urgencylevelname,
+		t1.status,
+		t1.creatdate
+		from t_workorder t1
+		LEFT JOIN t_data t2 ON t1.problemtype = t2.id
+		LEFT JOIN t_dept t3 ON t1.handlegroup = t3.id
+		LEFT JOIN t_user t4 ON t1.handleperson = t4.userid
+		LEFT JOIN t_data t5 ON t1.urgencylevel = t5.id
+		<where>
+			<if test="workorderid != null and workorderid != ''">
+				and t1.workorderid like "%"#{workorderid}"%"
+			</if>
+			<if test="customername != null and customername != ''">
+				and t1.customername like "%"#{customername}"%"
+			</if>
+			<if test="centificatenumber != null and centificatenumber != ''">
+				and t1.centificatenumber like "%"#{centificatenumber}"%"
+			</if>
+			<if test="problemtype != null and problemtype != ''">
+				and t1.problemtype like "%"#{problemtype}"%"
+			</if>
+			<if test="handlegroup != null and handlegroup != ''">
+				and t1.handlegroup = #{handlegroup}
+			</if>
+			<if test="handleperson != null and handleperson != ''">
+				and t1.handleperson = #{handleperson}
+			</if>
+			<if test="urgencylevel != null and urgencylevel != ''">
+				and t1.urgencylevel like "%"#{urgencylevel}"%"
+			</if>
+			<if test="status != null and status != ''">
+				and t1.status = #{status}
+			</if>
+		</where>
+	</select>
+	
 </mapper>

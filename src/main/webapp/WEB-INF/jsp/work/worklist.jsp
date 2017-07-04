@@ -78,15 +78,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <!-- <th>操作</th> -->
     </tr>
     </thead>
-    	<c:forEach items="${pageModel.list }" var="work">
+    	<c:forEach items="${pageModel.list}" var="work">
     		<tr>
             <td><a href="work/handworkPage/${work.workorderid }"/>${work.workorderid }</td>
-            <td>${work.customername }</td>
-            <td>${work.centificatenumber }</td>
-            <td>${work.problemtypename }</td>
-            <td>${work.handlegroupname }</td>
-            <td>${work.handlepersonname }</td>
-            <td>${work.urgencylevelname }</td>
+            <td>${work.customername}</td>
+            <td>${work.centificatenumber}</td>
+            <td>${work.problemtypename}</td>
+            <td>${work.handlegroupname}</td>
+            <td>${work.handlepersonname}</td>
+            <td>${work.urgencylevelname}</td>
             <td>
             	<c:choose>
             		<c:when test="${work.status==1 }">处理中</c:when>
