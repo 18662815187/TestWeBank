@@ -59,7 +59,7 @@ public class WorkorderController {
 	public String handworkPage(Model model, @PathVariable("workid") String workid, HttpSession session) {
 		// 根据工单号查询工单
 		Workorder workorder = workorderService.findByWid(workid);
-		model.addAttribute("workorder", workorder);
+		model.addAttribute("work", workorder);
 		// 获取所有部门
 		List<Dept> depts = deptService.queryAll();
 		model.addAttribute("deptlist", depts);

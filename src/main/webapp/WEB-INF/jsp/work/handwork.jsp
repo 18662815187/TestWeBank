@@ -55,8 +55,8 @@ body {
 			</tr>
 			<tr>
 				<td width="10%" class="tableleft">客户姓名</td>
-				<td style="display: none">${workorder.workorderid}</td>
-				<td>${workorder.customername}</td>
+				<td style="display: none">${work.workorderid}</td>
+				<td>${work.customername}</td>
 
 				<td width="10%" class="tableleft">性别</td>
 				<td><select name="customer.sex">
@@ -77,7 +77,7 @@ body {
 			</tr>
 			<tr>
 				<td width="10%" class="tableleft">证件号码</td>
-				<td>${workorder.centificatenumber }</td>
+				<td>${work.centificatenumber }</td>
 
 				<td width="10%" class="tableleft">手机号</td>
 				<td><input type="text" name="customer.telephone"
@@ -135,10 +135,10 @@ body {
 			</tr>
 			<tr>
 				<td width="10%" class="tableleft">处理时效</td>
-				<td>${workorder.aging }小时</td>
+				<td>${work.aging }小时</td>
 
 				<td width="10%" class="tableleft">紧急程度</td>
-				<td>${workorder.urgencylevel }</td>
+				<td>${work.urgencylevel }</td>
 
 				<td width="10%" class="tableleft">问题类型</td>
 				<td>${data.name}</td>
@@ -150,7 +150,7 @@ body {
 						<option value="0">--请选择--</option>
 						<c:forEach items="${deptlist}" var="d">
 							<option value="${d.id }"
-								${d.id==workorder.handlegroup?'selected':'' }>${d.name }</option>
+								${d.id==work.handlegroup?'selected':'' }>${d.name }</option>
 						</c:forEach>
 				</select></td>
 
@@ -221,7 +221,7 @@ body {
 										<tr>
 											<td><input type="radio" name="status" value="3">退单
 												<select name="backhandleperson">
-													<c:forEach items="${backUserList }" var="u">
+													<c:forEach items="${backUserList}" var="u">
 														<option value="${u.handleperson }">${u.handlepersonname }</option>
 													</c:forEach>
 											</select></td>
@@ -310,10 +310,8 @@ body {
 							操作：${h.actionstr }</p>
 						<p>
 							操作时间：
-							<fmt:formatDate value="${h.createdate }"
-								pattern="yyyy-MM-dd HH:mm:ss" />
-
-							处理意见： ${h.descs }
+							<fmt:formatDate value="${h.createdate }" pattern="yyyy-MM-dd HH:mm:ss" />
+							处理意见： ${h.descs}
 						</p>
 					</div>
 				</c:forEach>
@@ -330,8 +328,7 @@ body {
 
     });
     function changeGroup(did){
-    	$.getJSON("<%=path%>
-	/work/queryByDid?did=" + did + "&time="
+    	$.getJSON("<%=path%>/work/queryByDid?did=" + did + "&time="
 				+ new Date(), function(json) {
 
 			$("#handleperson").empty();
