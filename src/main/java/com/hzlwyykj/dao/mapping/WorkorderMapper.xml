@@ -205,9 +205,12 @@
 		t1.creatdate
 		from t_workorder t1
 		LEFT JOIN t_data t2 ON t1.problemtype = t2.id
-		LEFT JOIN t_dept t3 ON t1.handlegroup = t3.id
-		LEFT JOIN t_user t4 ON t1.handleperson = t4.userid
-		LEFT JOIN t_data t5 ON t1.urgencylevel = t5.id
+		LEFT
+		JOIN t_dept t3 ON t1.handlegroup = t3.id
+		LEFT JOIN t_user t4 ON
+		t1.handleperson = t4.userid
+		LEFT JOIN t_data t5 ON t1.urgencylevel =
+		t5.id
 		<where>
 			<if test="workorderid != null and workorderid != ''">
 				and t1.workorderid like "%"#{workorderid}"%"
@@ -235,5 +238,5 @@
 			</if>
 		</where>
 	</select>
-	
+
 </mapper>
