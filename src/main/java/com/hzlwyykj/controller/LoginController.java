@@ -18,13 +18,14 @@ public class LoginController {
 	private IUserService userService;
 
 	@RequestMapping("/login")
-	public String login(Model model, HttpServletRequest request) {
+	public String login(Model model, HttpServletRequest request, HttpSession session) {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		System.out.println("-----------------------" + username + "------------------" + password);
 		User user = userService.findByUserName(username, password);
 		if (user != null) {
 			model.addAttribute("user", user);
+			session.setAttribute("user", user);
 			return "forward:home.jsp";
 		} else {
 			model.addAttribute("msg", "用户名或者密码错误");

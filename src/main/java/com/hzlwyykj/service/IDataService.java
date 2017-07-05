@@ -23,5 +23,6 @@ public interface IDataService {
 	void update(Data data) throws RuntimeException;
 
 	// 根据主键查询
-	Data findById(int id);
+	Data findById(Integer id);
+	
 }

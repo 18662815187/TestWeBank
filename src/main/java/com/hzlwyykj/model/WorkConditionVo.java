@@ -73,6 +73,8 @@ public class WorkConditionVo extends BaseVo {
 	     * 
 	     */
 	    private Integer status;
+	    
+	    
 
 		public String getWorkorderid() {
 			return workorderid;

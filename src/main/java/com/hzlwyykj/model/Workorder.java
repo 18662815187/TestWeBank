@@ -14,7 +14,7 @@ public class Workorder {
 
 	private Integer aging;
 
-	private String problemtype;
+	private int problemtype;
 	// 添加临时字段，数据库中没有
 	private String problemtypename;
 
@@ -31,6 +31,17 @@ public class Workorder {
 
 	private Date creatdate;
 	private String descs;
+	//临时字段用于存储性别
+	private String sex;
+	
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
 
 	/**
 	 * 一个客户对应一个工单
@@ -129,12 +140,12 @@ public class Workorder {
 		this.aging = aging;
 	}
 
-	public String getProblemtype() {
+	public Integer getProblemtype() {
 		return problemtype;
 	}
 
-	public void setProblemtype(String problemtype) {
-		this.problemtype = problemtype == null ? null : problemtype.trim();
+	public void setProblemtype(Integer problemtype) {
+		this.problemtype = problemtype == null ? null : problemtype;
 	}
 
 	public Integer getHandlegroup() {

@@ -7,7 +7,7 @@
 		<result column="customername" jdbcType="VARCHAR" property="customername" />
 		<result column="centificatenumber" jdbcType="VARCHAR" property="centificatenumber" />
 		<result column="aging" jdbcType="INTEGER" property="aging" />
-		<result column="problemtype" jdbcType="VARCHAR" property="problemtype" />
+		<result column="problemtype" jdbcType="INTEGER" property="problemtype" />
 		<result column="handlegroup" jdbcType="INTEGER" property="handlegroup" />
 		<result column="handleperson" jdbcType="INTEGER" property="handleperson" />
 		<result column="urgencylevel" jdbcType="VARCHAR" property="urgencylevel" />
@@ -45,7 +45,7 @@
 		#{customerid,jdbcType=INTEGER},
 		#{customername,jdbcType=VARCHAR},
 		#{centificatenumber,jdbcType=VARCHAR}, #{aging,jdbcType=INTEGER},
-		#{problemtype,jdbcType=VARCHAR},
+		#{problemtype,jdbcType=INTEGER},
 		#{handlegroup,jdbcType=INTEGER},
 		#{handleperson,jdbcType=INTEGER}, #{urgencylevel,jdbcType=VARCHAR},
 		#{status,jdbcType=INTEGER}, #{creatdate,jdbcType=TIMESTAMP})
@@ -104,7 +104,7 @@
 				#{aging,jdbcType=INTEGER},
 			</if>
 			<if test="problemtype != null">
-				#{problemtype,jdbcType=VARCHAR},
+				#{problemtype,jdbcType=INTEGER},
 			</if>
 			<if test="handlegroup != null">
 				#{handlegroup,jdbcType=INTEGER},
@@ -140,7 +140,7 @@
 				aging = #{aging,jdbcType=INTEGER},
 			</if>
 			<if test="problemtype != null">
-				problemtype = #{problemtype,jdbcType=VARCHAR},
+				problemtype = #{problemtype,jdbcType=INTEGER},
 			</if>
 			<if test="handlegroup != null">
 				handlegroup = #{handlegroup,jdbcType=INTEGER},
@@ -170,7 +170,7 @@
 		aging =
 		#{aging,jdbcType=INTEGER},
 		problemtype =
-		#{problemtype,jdbcType=VARCHAR},
+		#{problemtype,jdbcType=INTEGER},
 		handlegroup =
 		#{handlegroup,jdbcType=INTEGER},
 		handleperson =
@@ -238,5 +238,14 @@
 			</if>
 		</where>
 	</select>
-
+	<select id="findIdByWid" parameterType="String" resultType="int">
+		select customerid from t_workorder where workorderid=#{value}
+	</select>
+	<select id="findProTypeByWid" parameterType="String" resultType="int">
+		select problemtype from t_workorder where workorderid=#{value}
+	</select>
+	<select id="findHandlePerByWid" parameterType="String"
+		resultType="int">
+		select handleperson from t_workorder where workorderid=#{value}
+	</select>
 </mapper>

@@ -52,7 +52,7 @@ public class DataServiceImpl implements IDataService {
 	}
 	//根据主键查询
 	@Override
-	public Data findById(int id) {
+	public Data findById(Integer id) {
 		return dataDao.selectByPrimaryKey(id);
 	}
 

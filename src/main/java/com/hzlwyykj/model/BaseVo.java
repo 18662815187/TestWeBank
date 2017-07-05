@@ -7,7 +7,7 @@ public class BaseVo {
 	 * keywords为关键字查询参数；
 	 */
     private int pageNum=1;
-    private int pageSize=5;
+    private int pageSize=10;
     private String keywords;
 	public int getPageNum() {
 		return pageNum;
