@@ -21,9 +21,6 @@
 <script type="text/javascript" src="Js/bootstrap.js"></script>
 <script type="text/javascript" src="Js/ckform.js"></script>
 <script type="text/javascript" src="Js/common.js"></script>
-
-
-
 <style type="text/css">
 body {
 	padding-bottom: 40px;
@@ -61,16 +58,11 @@ body {
 
 		状态：<select name="status" id="status">
 			<option value="0">---请选择---</option>
-			<option value="1"
-				<c:if test="${vo.status==1}">selected="selected"</c:if>>处理中</option>
-			<option value="2"
-				<c:if test="${vo.status==2}">selected="selected"</c:if>>归档</option>
-			<option value="3"
-				<c:if test="${vo.status==3}">selected="selected"</c:if>>退单</option>
-			<option value="4"
-				<c:if test="${vo.status==4}">selected="selected"</c:if>>挂起</option>
-			<option value="5"
-				<c:if test="${vo.status==5}">selected="selected"</c:if>>未处理</option>
+			<option value="1" <c:if test="${vo.status==1}"/>>处理中</option>
+			<option value="2" <c:if test="${vo.status==2}"/>>归档</option>
+			<option value="3" <c:if test="${vo.status==3}"/>>退单</option>
+			<option value="4" <c:if test="${vo.status==4}"/>>挂起</option>
+			<option value="5" <c:if test="${vo.status==5}"/>>未处理</option>
 		</select>
 
 		<!--所在小组： <input
@@ -80,9 +72,7 @@ body {
 		所在小组： <select name="handlegroup" id="handlegroup">
 			<option value="0">---请选择---</option>
 			<c:forEach items="${deptlist}" var="d">
-				<option value="${d.id}"
-					<c:if test="${d.id==vo.handlegroup}">selected="selected"</c:if>>
-					${d.name}</option>
+				<option value="${d.id}" <c:if test="${d.id==vo.handlegroup}"/>>${d.name}</option>
 			</c:forEach>
 		</select>
 
@@ -178,15 +168,10 @@ body {
 
 	function del(id)
 	{
-		
-		
 		if(confirm("确定要删除吗？"))
 		{
-		
 			var url = "<%=path%>/work/delete?id=" + id;
-
 			window.location.href = url;
-
 		}
 
 	}
