@@ -302,7 +302,7 @@ body {
 			<div class="media">
 				<c:forEach items="${historylist }" var="h">
 					<a class="pull-left" href="#"> <img class="media-object"
-						src="assets/img/one.jpg" width="100" height="150" alt="媒体对象">
+						src="assets/img/one.png" width="100" height="150" alt="媒体对象">
 					</a>
 					<div class="media-body">
 						<p>处理组：${h.handlegroupname } 处理人：${h.handlepersonname }
