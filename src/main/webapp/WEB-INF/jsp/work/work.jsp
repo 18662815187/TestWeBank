@@ -116,6 +116,8 @@
 
 				<td width="10%" class="tableleft">来电号码</td>
 				<td><input type="text" name="customer.callphone" /></td>
+				<td width="10%" class="tableleft"></td>
+				<td></td>
 
 
 			</tr>

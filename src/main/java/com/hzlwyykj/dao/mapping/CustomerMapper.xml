@@ -1,177 +1,182 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hzlwyykj.dao.CustomerMapper">
-  <resultMap id="BaseResultMap" type="com.hzlwyykj.model.Customer">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="customername" jdbcType="VARCHAR" property="customername" />
-    <result column="sex" jdbcType="VARCHAR" property="sex" />
-    <result column="certificatetype" jdbcType="VARCHAR" property="certificatetype" />
-    <result column="centificatenumber" jdbcType="VARCHAR" property="centificatenumber" />
-    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
-    <result column="wechatwhite" jdbcType="VARCHAR" property="wechatwhite" />
-    <result column="openchannel" jdbcType="VARCHAR" property="openchannel" />
-    <result column="qqwhile" jdbcType="VARCHAR" property="qqwhile" />
-    <result column="customertype" jdbcType="VARCHAR" property="customertype" />
-    <result column="comeinchannel" jdbcType="VARCHAR" property="comeinchannel" />
-    <result column="callphone" jdbcType="VARCHAR" property="callphone" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, customername, sex, certificatetype, centificatenumber, telephone, wechatwhite, 
-    openchannel, qqwhile, customertype, comeinchannel, callphone
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from t_customer
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_customer
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.hzlwyykj.model.Customer">
-    insert into t_customer (id, customername, sex, 
-      certificatetype, centificatenumber, telephone, 
-      wechatwhite, openchannel, qqwhile, 
-      customertype, comeinchannel, callphone
-      )
-    values (#{id,jdbcType=INTEGER}, #{customername,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
-      #{certificatetype,jdbcType=VARCHAR}, #{centificatenumber,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
-      #{wechatwhite,jdbcType=VARCHAR}, #{openchannel,jdbcType=VARCHAR}, #{qqwhile,jdbcType=VARCHAR}, 
-      #{customertype,jdbcType=VARCHAR}, #{comeinchannel,jdbcType=VARCHAR}, #{callphone,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.hzlwyykj.model.Customer">
-    insert into t_customer
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="customername != null">
-        customername,
-      </if>
-      <if test="sex != null">
-        sex,
-      </if>
-      <if test="certificatetype != null">
-        certificatetype,
-      </if>
-      <if test="centificatenumber != null">
-        centificatenumber,
-      </if>
-      <if test="telephone != null">
-        telephone,
-      </if>
-      <if test="wechatwhite != null">
-        wechatwhite,
-      </if>
-      <if test="openchannel != null">
-        openchannel,
-      </if>
-      <if test="qqwhile != null">
-        qqwhile,
-      </if>
-      <if test="customertype != null">
-        customertype,
-      </if>
-      <if test="comeinchannel != null">
-        comeinchannel,
-      </if>
-      <if test="callphone != null">
-        callphone,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="customername != null">
-        #{customername,jdbcType=VARCHAR},
-      </if>
-      <if test="sex != null">
-        #{sex,jdbcType=VARCHAR},
-      </if>
-      <if test="certificatetype != null">
-        #{certificatetype,jdbcType=VARCHAR},
-      </if>
-      <if test="centificatenumber != null">
-        #{centificatenumber,jdbcType=VARCHAR},
-      </if>
-      <if test="telephone != null">
-        #{telephone,jdbcType=VARCHAR},
-      </if>
-      <if test="wechatwhite != null">
-        #{wechatwhite,jdbcType=VARCHAR},
-      </if>
-      <if test="openchannel != null">
-        #{openchannel,jdbcType=VARCHAR},
-      </if>
-      <if test="qqwhile != null">
-        #{qqwhile,jdbcType=VARCHAR},
-      </if>
-      <if test="customertype != null">
-        #{customertype,jdbcType=VARCHAR},
-      </if>
-      <if test="comeinchannel != null">
-        #{comeinchannel,jdbcType=VARCHAR},
-      </if>
-      <if test="callphone != null">
-        #{callphone,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.hzlwyykj.model.Customer">
-    update t_customer
-    <set>
-      <if test="customername != null">
-        customername = #{customername,jdbcType=VARCHAR},
-      </if>
-      <if test="sex != null">
-        sex = #{sex,jdbcType=VARCHAR},
-      </if>
-      <if test="certificatetype != null">
-        certificatetype = #{certificatetype,jdbcType=VARCHAR},
-      </if>
-      <if test="centificatenumber != null">
-        centificatenumber = #{centificatenumber,jdbcType=VARCHAR},
-      </if>
-      <if test="telephone != null">
-        telephone = #{telephone,jdbcType=VARCHAR},
-      </if>
-      <if test="wechatwhite != null">
-        wechatwhite = #{wechatwhite,jdbcType=VARCHAR},
-      </if>
-      <if test="openchannel != null">
-        openchannel = #{openchannel,jdbcType=VARCHAR},
-      </if>
-      <if test="qqwhile != null">
-        qqwhile = #{qqwhile,jdbcType=VARCHAR},
-      </if>
-      <if test="customertype != null">
-        customertype = #{customertype,jdbcType=VARCHAR},
-      </if>
-      <if test="comeinchannel != null">
-        comeinchannel = #{comeinchannel,jdbcType=VARCHAR},
-      </if>
-      <if test="callphone != null">
-        callphone = #{callphone,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.hzlwyykj.model.Customer">
-    update t_customer
-    set customername = #{customername,jdbcType=VARCHAR},
-      sex = #{sex,jdbcType=VARCHAR},
-      certificatetype = #{certificatetype,jdbcType=VARCHAR},
-      centificatenumber = #{centificatenumber,jdbcType=VARCHAR},
-      telephone = #{telephone,jdbcType=VARCHAR},
-      wechatwhite = #{wechatwhite,jdbcType=VARCHAR},
-      openchannel = #{openchannel,jdbcType=VARCHAR},
-      qqwhile = #{qqwhile,jdbcType=VARCHAR},
-      customertype = #{customertype,jdbcType=VARCHAR},
-      comeinchannel = #{comeinchannel,jdbcType=VARCHAR},
-      callphone = #{callphone,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+	<resultMap id="BaseResultMap" type="com.hzlwyykj.model.Customer">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="customername" jdbcType="VARCHAR" property="customername" />
+		<result column="sex" jdbcType="VARCHAR" property="sex" />
+		<result column="certificatetype" jdbcType="VARCHAR" property="certificatetype" />
+		<result column="centificatenumber" jdbcType="VARCHAR" property="centificatenumber" />
+		<result column="telephone" jdbcType="VARCHAR" property="telephone" />
+		<result column="wechatwhite" jdbcType="VARCHAR" property="wechatwhite" />
+		<result column="openchannel" jdbcType="VARCHAR" property="openchannel" />
+		<result column="qqwhile" jdbcType="VARCHAR" property="qqwhile" />
+		<result column="customertype" jdbcType="VARCHAR" property="customertype" />
+		<result column="comeinchannel" jdbcType="VARCHAR" property="comeinchannel" />
+		<result column="callphone" jdbcType="VARCHAR" property="callphone" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, customername, sex, certificatetype, centificatenumber, telephone,
+		wechatwhite,
+		openchannel, qqwhile, customertype, comeinchannel, callphone
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_customer
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from t_customer
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.hzlwyykj.model.Customer">
+		insert into t_customer (id, customername, sex,
+		certificatetype, centificatenumber, telephone,
+		wechatwhite, openchannel, qqwhile,
+		customertype, comeinchannel, callphone
+		)
+		values (#{id,jdbcType=INTEGER}, #{customername,jdbcType=VARCHAR},
+		#{sex,jdbcType=VARCHAR},
+		#{certificatetype,jdbcType=VARCHAR}, #{centificatenumber,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR},
+		#{wechatwhite,jdbcType=VARCHAR}, #{openchannel,jdbcType=VARCHAR},
+		#{qqwhile,jdbcType=VARCHAR},
+		#{customertype,jdbcType=VARCHAR}, #{comeinchannel,jdbcType=VARCHAR}, #{callphone,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" useGeneratedKeys="true"
+		keyProperty="id" parameterType="com.hzlwyykj.model.Customer">
+		insert into t_customer
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="customername != null">
+				customername,
+			</if>
+			<if test="sex != null">
+				sex,
+			</if>
+			<if test="certificatetype != null">
+				certificatetype,
+			</if>
+			<if test="centificatenumber != null">
+				centificatenumber,
+			</if>
+			<if test="telephone != null">
+				telephone,
+			</if>
+			<if test="wechatwhite != null">
+				wechatwhite,
+			</if>
+			<if test="openchannel != null">
+				openchannel,
+			</if>
+			<if test="qqwhile != null">
+				qqwhile,
+			</if>
+			<if test="customertype != null">
+				customertype,
+			</if>
+			<if test="comeinchannel != null">
+				comeinchannel,
+			</if>
+			<if test="callphone != null">
+				callphone,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="customername != null">
+				#{customername,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				#{sex,jdbcType=VARCHAR},
+			</if>
+			<if test="certificatetype != null">
+				#{certificatetype,jdbcType=VARCHAR},
+			</if>
+			<if test="centificatenumber != null">
+				#{centificatenumber,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null">
+				#{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="wechatwhite != null">
+				#{wechatwhite,jdbcType=VARCHAR},
+			</if>
+			<if test="openchannel != null">
+				#{openchannel,jdbcType=VARCHAR},
+			</if>
+			<if test="qqwhile != null">
+				#{qqwhile,jdbcType=VARCHAR},
+			</if>
+			<if test="customertype != null">
+				#{customertype,jdbcType=VARCHAR},
+			</if>
+			<if test="comeinchannel != null">
+				#{comeinchannel,jdbcType=VARCHAR},
+			</if>
+			<if test="callphone != null">
+				#{callphone,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hzlwyykj.model.Customer">
+		update t_customer
+		<set>
+			<if test="customername != null">
+				customername = #{customername,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				sex = #{sex,jdbcType=VARCHAR},
+			</if>
+			<if test="certificatetype != null">
+				certificatetype = #{certificatetype,jdbcType=VARCHAR},
+			</if>
+			<if test="centificatenumber != null">
+				centificatenumber = #{centificatenumber,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null">
+				telephone = #{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="wechatwhite != null">
+				wechatwhite = #{wechatwhite,jdbcType=VARCHAR},
+			</if>
+			<if test="openchannel != null">
+				openchannel = #{openchannel,jdbcType=VARCHAR},
+			</if>
+			<if test="qqwhile != null">
+				qqwhile = #{qqwhile,jdbcType=VARCHAR},
+			</if>
+			<if test="customertype != null">
+				customertype = #{customertype,jdbcType=VARCHAR},
+			</if>
+			<if test="comeinchannel != null">
+				comeinchannel = #{comeinchannel,jdbcType=VARCHAR},
+			</if>
+			<if test="callphone != null">
+				callphone = #{callphone,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hzlwyykj.model.Customer">
+		update t_customer
+		set customername = #{customername,jdbcType=VARCHAR},
+		sex = #{sex,jdbcType=VARCHAR},
+		certificatetype = #{certificatetype,jdbcType=VARCHAR},
+		centificatenumber = #{centificatenumber,jdbcType=VARCHAR},
+		telephone = #{telephone,jdbcType=VARCHAR},
+		wechatwhite = #{wechatwhite,jdbcType=VARCHAR},
+		openchannel = #{openchannel,jdbcType=VARCHAR},
+		qqwhile = #{qqwhile,jdbcType=VARCHAR},
+		customertype = #{customertype,jdbcType=VARCHAR},
+		comeinchannel = #{comeinchannel,jdbcType=VARCHAR},
+		callphone = #{callphone,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
 </mapper>
