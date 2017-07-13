@@ -22,4 +22,6 @@ public interface IUserService {
 	User findById(int id);
 	//删除
 	void deleteById(int id)throws RuntimeException;
+	//根据部门编号查询用户
+	List<User> findByDid(int did);
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
 import com.hzlwyykj.model.Customer;
@@ -75,11 +76,11 @@ public class WorkorderController {
 		Customer customer = customerService.findById(id);
 		System.err.println(customer.getCustomertype());
 		model.addAttribute("customer", customer);
-		//根据工单号查问题编号
+		// 根据工单号查问题编号
 		int pid = workorderService.findProTypeByWid(workid);
 		Data data = dataService.findById(pid);
 		model.addAttribute("data", data);
-		//根据工单号查找处理人
+		// 根据工单号查找处理人
 		int handleId = workorderService.findHandlePerByWid(workid);
 		User handlePer = userService.findById(handleId);
 		model.addAttribute("handlePer", handlePer);
@@ -89,5 +90,22 @@ public class WorkorderController {
 		List<Handleworkhistory> list = handService.findByIdAndUid(workid, user.getUserid());
 		model.addAttribute("backUserList", list);
 		return "work/handwork";
+	}
+
+	// 根据部门编号查询人员
+	@RequestMapping("/queryByDid")
+	@ResponseBody
+	public List<User> queryByDid(int did) {
+		List<User> list = userService.findByDid(did);
+		return list;
+	}
+	//跳转到创建工单页面
+	@RequestMapping("/init")
+	public String init(Model model){
+		List<Dept> depts = deptService.queryAll();
+		List<Data> datas = dataService.getAll();
+		model.addAttribute("deptlist", depts);
+		model.addAttribute("datalist", datas);
+		return "work/work";
 	}
 }

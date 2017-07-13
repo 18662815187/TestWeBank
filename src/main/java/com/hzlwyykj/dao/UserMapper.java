@@ -40,4 +40,6 @@ public interface UserMapper {
 	 *获取最新的id
 	 */
 	int selectLastId();
+	//通过部门编号查询人员
+	List<User> findByDid(int did);
 }

@@ -254,14 +254,19 @@
 	</select>
 	<!-- parameterType使用map可传一个以上参数 -->
 	<insert id="insertUidAndRid" parameterType="map">
-		insert into t_user_role(userid,rid) values(#{userid},#{rid})
+		insert into
+		t_user_role(userid,rid) values(#{userid},#{rid})
 	</insert>
 	<!-- 根据uid删除附表信息 -->
 	<delete id="deleteRidAndUidByUid" parameterType="int">
-	delete from t_user_role where userid=#{value}
+		delete from t_user_role where userid=#{value}
 	</delete>
 	<!-- 查询最新的uid -->
-	<select id="selectLastId" resultType="int" >
-	SELECT LAST_INSERT_ID() AS ID
+	<select id="selectLastId" resultType="int">
+		SELECT LAST_INSERT_ID() AS ID
+	</select>
+	<!-- 通过部门id查询人员 -->
+	<select id="findByDid" parameterType="int" resultType="user">
+		select * from t_user where did=#{value}
 	</select>
 </mapper>

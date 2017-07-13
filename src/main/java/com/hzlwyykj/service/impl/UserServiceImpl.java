@@ -75,19 +75,26 @@ public class UserServiceImpl implements IUserService {
 			}
 		}
 	}
-	//通过主键查询用户
+
+	// 通过主键查询用户
 	@Override
 	public User findById(int id) {
 		return userDao.selectByPrimaryKey(id);
 	}
 
-	//删除
+	// 删除
 	@Override
 	public void deleteById(int id) throws RuntimeException {
-		//先删附表
+		// 先删附表
 		userDao.deleteRidAndUidByUid(id);
-		//删主表
+		// 删主表
 		userDao.deleteByPrimaryKey(id);
+	}
+
+	// 根据部门id查询人员
+	@Override
+	public List<User> findByDid(int did) {
+		return userDao.findByDid(did);
 	}
 
 }
