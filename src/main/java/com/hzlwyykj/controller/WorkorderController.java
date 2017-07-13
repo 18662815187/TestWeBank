@@ -1,5 +1,8 @@
 package com.hzlwyykj.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -10,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.github.pagehelper.PageInfo;
 import com.hzlwyykj.model.Customer;
@@ -18,6 +22,7 @@ import com.hzlwyykj.model.Dept;
 import com.hzlwyykj.model.Handleworkhistory;
 import com.hzlwyykj.model.User;
 import com.hzlwyykj.model.WorkConditionVo;
+import com.hzlwyykj.model.Workattach;
 import com.hzlwyykj.model.Workorder;
 import com.hzlwyykj.service.ICustomsService;
 import com.hzlwyykj.service.IDataService;
@@ -25,6 +30,7 @@ import com.hzlwyykj.service.IDeptService;
 import com.hzlwyykj.service.IHandleworkhistoryService;
 import com.hzlwyykj.service.IUserService;
 import com.hzlwyykj.service.IWorkorderService;
+import com.hzlwyykj.tools.GetId;
 
 @Controller
 @RequestMapping("/work")
@@ -99,13 +105,47 @@ public class WorkorderController {
 		List<User> list = userService.findByDid(did);
 		return list;
 	}
-	//跳转到创建工单页面
+
+	// 跳转到创建工单页面
 	@RequestMapping("/init")
-	public String init(Model model){
+	public String init(Model model) {
 		List<Dept> depts = deptService.queryAll();
 		List<Data> datas = dataService.getAll();
 		model.addAttribute("deptlist", depts);
 		model.addAttribute("datalist", datas);
 		return "work/work";
+	}
+
+	// 保存
+	@RequestMapping("/save")
+	public String save(MultipartFile[] files, Workorder work) throws IllegalStateException, IOException {
+		List<Workattach> attaches = new ArrayList<>();
+		// 保存文件
+		for (MultipartFile file : files) {
+			if (!file.isEmpty()) {
+				Workattach attach = new Workattach();
+				// 旧名字
+				String oldname = file.getOriginalFilename();
+				// 获取后缀
+				int opt = oldname.lastIndexOf(".");
+				String ext = oldname.substring(opt);// 获取后缀，如.jpg
+				// 新名字，唯一的
+				String newfilename = GetId.getNewFileName() + ext;
+				System.out.println(newfilename + "*****************");
+				File newfilepath = new File("D:\\测试项目上传路径\\" + newfilename);
+				if (!newfilepath.exists()) {
+					newfilepath.mkdirs();
+				}
+				file.transferTo(newfilepath);
+				System.out.println(newfilepath + "**************");
+				attach.setNewfilename(newfilename);
+				attach.setOldfilename(oldname);
+				System.out.println(attach.getOldfilename() + "************" + attach.getNewfilename());
+				attaches.add(attach);
+			}
+		}
+		work.setAttaches(attaches);
+		workorderService.save(work);
+		return "redirect:/work/queryAll";
 	}
 }

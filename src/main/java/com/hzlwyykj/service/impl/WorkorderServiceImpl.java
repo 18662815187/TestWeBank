@@ -1,22 +1,28 @@
 package com.hzlwyykj.service.impl;
 
+
 import java.util.List;
-
 import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
-
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.hzlwyykj.dao.CustomerMapper;
+import com.hzlwyykj.dao.WorkattachMapper;
 import com.hzlwyykj.dao.WorkorderMapper;
 import com.hzlwyykj.model.WorkConditionVo;
+import com.hzlwyykj.model.Workattach;
 import com.hzlwyykj.model.Workorder;
 import com.hzlwyykj.service.IWorkorderService;
+import com.hzlwyykj.tools.GetId;
 
 @Service
 public class WorkorderServiceImpl implements IWorkorderService {
 	@Resource
 	private WorkorderMapper workDao;
+	@Resource
+	private CustomerMapper customerDao;
+	@Resource
+	private WorkattachMapper attachDao;
 
 	// 所有工单
 	@Override
@@ -50,5 +56,28 @@ public class WorkorderServiceImpl implements IWorkorderService {
 	@Override
 	public int findHandlePerByWid(String workid) {
 		return workDao.findHandlePerByWid(workid);
+	}
+
+	// 保存
+	@Override
+	public void save(Workorder work) {
+		// 保存到客户表
+		customerDao.insertSelective(work.getCustomer());
+		// 保存工单到工单表
+		String workid = GetId.getWorkid();
+		work.setWorkorderid(workid);
+		work.setCustomerid(work.getCustomer().getId());
+		work.setCustomername(work.getCustomer().getCustomername());
+		work.setCentificatenumber(work.getCustomer().getCentificatenumber());
+		workDao.insertSelective(work);
+		// 保存到附件表
+		List<Workattach> attaches = work.getAttaches();
+		if (attaches != null && attaches.size() > 0) {
+			for (Workattach attach : attaches) {
+				attach.setWorkid(workid);
+				attachDao.insertSelective(attach);
+			}
+		}
+
 	}
 }

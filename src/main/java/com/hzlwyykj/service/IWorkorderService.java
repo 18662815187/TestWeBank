@@ -16,6 +16,10 @@ public interface IWorkorderService {
 
 	// 通过workid查询problemtype
 	public int findProTypeByWid(String workid);
-	//通过workid查询处理人id
+
+	// 通过workid查询处理人id
 	public int findHandlePerByWid(String workid);
+
+	// 保存
+	void save(Workorder work);
 }
