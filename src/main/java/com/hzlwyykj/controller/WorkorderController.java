@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -118,7 +119,7 @@ public class WorkorderController {
 
 	// 保存
 	@RequestMapping("/save")
-	public String save(MultipartFile[] files, Workorder work) throws IllegalStateException, IOException {
+	public String save(@RequestParam("files")MultipartFile[] files, Workorder work) throws IllegalStateException, IOException {
 		List<Workattach> attaches = new ArrayList<>();
 		// 保存文件
 		for (MultipartFile file : files) {
