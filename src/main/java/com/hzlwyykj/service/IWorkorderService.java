@@ -28,4 +28,7 @@ public interface IWorkorderService {
 
 	// 根据工单号查询附件
 	List<Workattach> findAttacheByworkId(String workid);
+	
+	//根据工单号更新
+	void update(Workorder work);
 }

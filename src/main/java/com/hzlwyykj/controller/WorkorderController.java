@@ -153,4 +153,12 @@ public class WorkorderController {
 		workorderService.save(work);
 		return "redirect:/work/queryAll";
 	}
+
+	// 更新
+	@RequestMapping("/update")
+	public String update(Workorder work) {
+		
+		
+		return null;
+	}
 }

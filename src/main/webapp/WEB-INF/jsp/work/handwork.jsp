@@ -45,32 +45,29 @@ body {
 </style>
 </head>
 <body>
-	<form enctype="multipart/form-data" action="work/save" method="post"
+	<form enctype="multipart/form-data" action="work/update" method="post"
 		class="definewidth m20">
 		<table class="table table-bordered table-hover definewidth m10">
 			<input type="hidden" name="userid" />
 			<tr>
 				<td colspan="6"><h3>客户信息</h3></td>
-
 			</tr>
 			<tr>
 				<td width="10%" class="tableleft">客户姓名</td>
 				<td style="display: none">${work.workorderid}</td>
 				<td>${work.customername}</td>
-
 				<td width="10%" class="tableleft">性别</td>
 				<td><select name="customer.sex">
 						<option value="2">未知</option>
 						<option value="1">男</option>
 						<option value="0">女</option>
 				</select></td>
-
 				<td width="10%" class="tableleft">证件类型</td>
 				<td><select name="customer.certificatetype">
 						<c:forEach items="${datalist}" var="d">
 							<c:if test="${d.pid==1}">
 								<option value="${d.id}"
-									${d.id==customer.certificatetype?'selected':'' }>${d.name }</option>
+									${d.id==customer.certificatetype?'selected':''}>${d.name}</option>
 							</c:if>
 						</c:forEach>
 				</select></td>
@@ -175,8 +172,7 @@ body {
 			</tr>
 			<tr>
 				<td width="10%" class="tableleft">已上传文件</td>
-				<td>
-				<c:forEach items="${attaches}" var="a">
+				<td><c:forEach items="${attaches}" var="a">
 					${a.newfilename};
 				</c:forEach></td>
 				<td width="10%" class="tableleft"></td>
@@ -311,8 +307,7 @@ body {
 		<div class="panel-body">
 			<div class="media">
 				<c:forEach items="${historylist }" var="h">
-					<a class="pull-left" href="#"> <img class="media-object"
-						src="assets/img/one.png" width="100" height="150" alt="媒体对象">
+					<a class="pull-left" href="#"> <img class="media-object" src="assets/img/one.png" width="100" height="150" alt="媒体对象">
 					</a>
 					<div class="media-body">
 						<p>处理组：${h.handlegroupname } 处理人：${h.handlepersonname }

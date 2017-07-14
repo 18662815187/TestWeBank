@@ -118,11 +118,11 @@ body {
             		</c:otherwise>
 					</c:choose></td>
 				<td><fmt:formatDate value="${work.creatdate }"
-						pattern="yyyy-MM-dd" /></td>
+						pattern="yyyy-MM-dd"/></td>
 				<td>剩余2天10小时15分钟</td>
 				<td>1</td>
 				<td><fmt:formatDate value="${work.creatdate }"
-						pattern="yyyy-MM-dd" /></td>
+						pattern="yyyy-MM-dd"/></td>
 				<%--  <td> 
 			   <a href="work/updatePage/${work.userid }">编辑</a> 
 			   <a href="user/delete/${user.userid }">删除</a> 

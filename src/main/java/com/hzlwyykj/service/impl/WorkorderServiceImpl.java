@@ -80,8 +80,33 @@ public class WorkorderServiceImpl implements IWorkorderService {
 		}
 	}
 
+	// 通过工单号查询附件
 	@Override
 	public List<Workattach> findAttacheByworkId(String workid) {
 		return attachDao.findAttacheByWorkid(workid);
 	}
+
+	// 根据工单号更新
+	@Override
+	public void update(Workorder work) {
+		String workid = work.getWorkorderid();
+		System.out.println(workid);
+		// 更新客户表
+		customerDao.updateByPrimaryKey(work.getCustomer());
+		// 更新附件表
+		List<Workattach> attaches = work.getAttaches();
+		if (attaches != null && attaches.size() > 0) {
+			for (Workattach attach : attaches) {
+				attach.setWorkid(workid);
+				attachDao.insertSelective(attach);
+			}
+		}
+		work.setWorkorderid(workid);
+		System.out.println("***************" + work.getCustomer().getId());
+		work.setCustomerid(work.getCustomer().getId());
+		work.setCustomername(work.getCustomer().getCustomername());
+		work.setCentificatenumber(work.getCustomer().getCentificatenumber());
+		workDao.updateByPrimaryKey(work);
+	}
+
 }

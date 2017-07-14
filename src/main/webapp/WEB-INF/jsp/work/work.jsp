@@ -1,54 +1,55 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <base href="<%=basePath%>">
-    <title></title>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="Css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="Css/bootstrap-responsive.css" />
-    <link rel="stylesheet" type="text/css" href="Css/style.css" />
-    <script type="text/javascript" src="Js/jquery.js"></script>
-    <script type="text/javascript" src="Js/jquery.sorted.js"></script>
-    <script type="text/javascript" src="Js/bootstrap.js"></script>
-    <script type="text/javascript" src="Js/ckform.js"></script>
-    <script type="text/javascript" src="Js/common.js"></script>
-
- 
-
-    <style type="text/css">
-        body {
-            padding-bottom: 40px;
-        }
-        .sidebar-nav {
-            padding: 9px 0;
-        }
-
-        @media (max-width: 980px) {
-            /* Enable use of floated navbar text */
-            .navbar-text.pull-right {
-                float: none;
-                padding-left: 5px;
-                padding-right: 5px;
-            }
-        }
+<title></title>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="Css/bootstrap.css" />
+<link rel="stylesheet" type="text/css"
+	href="Css/bootstrap-responsive.css" />
+<link rel="stylesheet" type="text/css" href="Css/style.css" />
+<script type="text/javascript" src="Js/jquery.js"></script>
+<script type="text/javascript" src="Js/jquery.sorted.js"></script>
+<script type="text/javascript" src="Js/bootstrap.js"></script>
+<script type="text/javascript" src="Js/ckform.js"></script>
+<script type="text/javascript" src="Js/common.js"></script>
 
 
-    </style>
+
+<style type="text/css">
+body {
+	padding-bottom: 40px;
+}
+
+.sidebar-nav {
+	padding: 9px 0;
+}
+
+@media ( max-width : 980px) {
+	/* Enable use of floated navbar text */
+	.navbar-text.pull-right {
+		float: none;
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+}
+</style>
 </head>
 <body>
-<form enctype="multipart/form-data" action="work/save" method="post"
+	<form enctype="multipart/form-data" action="work/save" method="post"
 		class="definewidth m20">
 		<table class="table table-bordered table-hover definewidth m10">
-			<input type="hidden" name="customerid" value="${customer.id }"/>
+			<input type="hidden" name="workorderid" value="${work.workorderid}" />
+			<input type="hidden" name="customerid" value="${customer.id }" />
 			<tr>
 				<td colspan="6">客户信息</td>
 
@@ -68,9 +69,9 @@
 				<td width="10%" class="tableleft">证件类型</td>
 				<td><select name="customer.certificatetype">
 						<c:forEach items="${datalist }" var="d">
-						   <c:if test="${d.pid==1 }">
-						      <option value="${d.id }">${d.name}</option>
-						   </c:if>
+							<c:if test="${d.pid==1 }">
+								<option value="${d.id }">${d.name}</option>
+							</c:if>
 						</c:forEach>
 				</select></td>
 			</tr>
@@ -91,9 +92,9 @@
 				<td width="10%" class="tableleft">开户渠道</td>
 				<td><select name="customer.openchannel">
 						<c:forEach items="${datalist }" var="d">
-						   <c:if test="${d.pid==2 }">
-						      <option value="${d.id }">${d.name }</option>
-						   </c:if>
+							<c:if test="${d.pid==2 }">
+								<option value="${d.id }">${d.name }</option>
+							</c:if>
 						</c:forEach>
 				</select></td>
 
@@ -108,9 +109,9 @@
 				<td width="10%" class="tableleft">进线渠道</td>
 				<td><select name="customer.comeinchannel">
 						<c:forEach items="${datalist }" var="d">
-						   <c:if test="${d.pid==3 }">
-						      <option value="${d.id }">${d.name }</option>
-						   </c:if>
+							<c:if test="${d.pid==3 }">
+								<option value="${d.id }">${d.name }</option>
+							</c:if>
 						</c:forEach>
 				</select></td>
 
@@ -128,28 +129,28 @@
 			<tr>
 				<td width="10%" class="tableleft">处理时效</td>
 				<td><select name="aging">
-					<c:forEach items="${datalist }" var="d">
-						   <c:if test="${d.pid==4 }">
-						      <option value="${d.id }">${d.name }</option>
-						   </c:if>
+						<c:forEach items="${datalist }" var="d">
+							<c:if test="${d.pid==4 }">
+								<option value="${d.id }">${d.name }</option>
+							</c:if>
 						</c:forEach>
 				</select></td>
 
 				<td width="10%" class="tableleft">紧急程度</td>
 				<td><select name="urgencylevel">
-					<c:forEach items="${datalist }" var="d">
-						   <c:if test="${d.pid==5 }">
-						      <option value="${d.id }">${d.name }</option>
-						   </c:if>
+						<c:forEach items="${datalist }" var="d">
+							<c:if test="${d.pid==5 }">
+								<option value="${d.id }">${d.name }</option>
+							</c:if>
 						</c:forEach>
 				</select></td>
 
 				<td width="10%" class="tableleft">问题类型</td>
 				<td><select name="problemtype">
 						<c:forEach items="${datalist }" var="d">
-						   <c:if test="${d.pid==6 }">
-						      <option value="${d.id }">${d.name }</option>
-						   </c:if>
+							<c:if test="${d.pid==6 }">
+								<option value="${d.id }">${d.name }</option>
+							</c:if>
 						</c:forEach>
 				</select></td>
 			</tr>
@@ -159,18 +160,16 @@
 					onchange="changeGroup(this.value)">
 						<option value="0">--请选择--</option>
 						<c:forEach items="${deptlist }" var="d">
-						      <option value="${d.id }">${d.name }</option>
+							<option value="${d.id }">${d.name }</option>
 						</c:forEach>
 				</select></td>
 
 				<td width="10%" class="tableleft">处理人</td>
 
-				<td>
-				<select name="handleperson" id="handleperson">
-                    <option value="0">--请选择处理人--</option>
-                 
-				</select>
-				</td>
+				<td><select name="handleperson" id="handleperson">
+						<option value="0">--请选择处理人--</option>
+
+				</select></td>
 
 				<td width="10%" class="tableleft"></td>
 				<td></td>
@@ -183,10 +182,8 @@
 			</tr>
 			<tr>
 				<td width="10%" class="tableleft">上传文件</td>
-				<td colspan="5">
-				<input type="file" name="files"/>
-				<input type="file" name="files"/>
-				</td>
+				<td colspan="5"><input type="file" name="files" /> <input
+					type="file" name="files" /></td>
 
 			</tr>
 			<tr>
@@ -210,14 +207,18 @@
 
     });
     function changeGroup(did){
-    	$.getJSON("<%=path%>/work/queryByDid?did="+did+"&time="+new Date(),function(json){
-    		
-    		$("#handleperson").empty();
-    		$.each(json,function(i){
-    			$("#handleperson").append("<option value='"+json[i].userid+"'>"+json[i].username+"</option>");
-    		});
-			
-    	})
-    	
-    }
+    	$.getJSON("<%=path%>
+	/work/queryByDid?did=" + did + "&time="
+				+ new Date(), function(json) {
+
+			$("#handleperson").empty();
+			$.each(json, function(i) {
+				$("#handleperson").append(
+						"<option value='"+json[i].userid+"'>"
+								+ json[i].username + "</option>");
+			});
+
+		})
+
+	}
 </script>
