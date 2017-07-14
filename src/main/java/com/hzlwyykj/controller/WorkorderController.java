@@ -87,6 +87,9 @@ public class WorkorderController {
 		int pid = workorderService.findProTypeByWid(workid);
 		Data data = dataService.findById(pid);
 		model.addAttribute("data", data);
+		// 根据工单号查找附件
+		List<Workattach> workattachs = workorderService.findAttacheByworkId(workid);
+		model.addAttribute("attaches", workattachs);
 		// 根据工单号查找处理人
 		int handleId = workorderService.findHandlePerByWid(workid);
 		User handlePer = userService.findById(handleId);
@@ -119,7 +122,8 @@ public class WorkorderController {
 
 	// 保存
 	@RequestMapping("/save")
-	public String save(@RequestParam("files")MultipartFile[] files, Workorder work) throws IllegalStateException, IOException {
+	public String save(@RequestParam("files") MultipartFile[] files, Workorder work)
+			throws IllegalStateException, IOException {
 		List<Workattach> attaches = new ArrayList<>();
 		// 保存文件
 		for (MultipartFile file : files) {

@@ -8,14 +8,14 @@ public class GetId {
 	private static long fileNewName = 0;
 
 	public synchronized static String getWorkid() {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmSS");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 		String now = sdf.format(new Date());
 		workid++;
 		return now + workid;
 	}
 
 	public synchronized static String getNewFileName() {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmSS");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 		String now = sdf.format(new Date());
 		fileNewName++;
 		return now + fileNewName;

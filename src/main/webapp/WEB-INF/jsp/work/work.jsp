@@ -60,16 +60,16 @@
 
 				<td width="10%" class="tableleft">性别</td>
 				<td><select name="customer.sex">
-						<option value="0">未知</option>
+						<option value="2">未知</option>
 						<option value="1">男</option>
-						<option value="2">女</option>
+						<option value="0">女</option>
 				</select></td>
 
 				<td width="10%" class="tableleft">证件类型</td>
 				<td><select name="customer.certificatetype">
 						<c:forEach items="${datalist }" var="d">
 						   <c:if test="${d.pid==1 }">
-						      <option value="${d.id }">${d.name }</option>
+						      <option value="${d.id }">${d.name}</option>
 						   </c:if>
 						</c:forEach>
 				</select></td>
@@ -184,8 +184,8 @@
 			<tr>
 				<td width="10%" class="tableleft">上传文件</td>
 				<td colspan="5">
-				<input type="file" name="files" />
-				<input type="file" name="files" />
+				<input type="file" name="files"/>
+				<input type="file" name="files"/>
 				</td>
 
 			</tr>

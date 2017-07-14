@@ -1,6 +1,5 @@
 package com.hzlwyykj.service.impl;
 
-
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -66,7 +65,7 @@ public class WorkorderServiceImpl implements IWorkorderService {
 		// 保存工单到工单表
 		String workid = GetId.getWorkid();
 		work.setWorkorderid(workid);
-		System.out.println("***************"+work.getCustomer().getId());
+		System.out.println("***************" + work.getCustomer().getId());
 		work.setCustomerid(work.getCustomer().getId());
 		work.setCustomername(work.getCustomer().getCustomername());
 		work.setCentificatenumber(work.getCustomer().getCentificatenumber());
@@ -79,5 +78,10 @@ public class WorkorderServiceImpl implements IWorkorderService {
 				attachDao.insertSelective(attach);
 			}
 		}
+	}
+
+	@Override
+	public List<Workattach> findAttacheByworkId(String workid) {
+		return attachDao.findAttacheByWorkid(workid);
 	}
 }

@@ -1,4 +1,5 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%
@@ -59,9 +60,9 @@ body {
 
 				<td width="10%" class="tableleft">性别</td>
 				<td><select name="customer.sex">
-						<option value="0">未知</option>
+						<option value="2">未知</option>
 						<option value="1">男</option>
-						<option value="2">女</option>
+						<option value="0">女</option>
 				</select></td>
 
 				<td width="10%" class="tableleft">证件类型</td>
@@ -148,8 +149,7 @@ body {
 					onchange="changeGroup(this.value)">
 						<option value="0">--请选择--</option>
 						<c:forEach items="${deptlist}" var="d">
-							<option value="${d.id }"
-								${d.id==work.handlegroup?'selected':'' }>${d.name }</option>
+							<option value="${d.id }" ${d.id==work.handlegroup?'selected':'' }>${d.name }</option>
 						</c:forEach>
 				</select></td>
 
@@ -174,7 +174,17 @@ body {
 
 			</tr>
 			<tr>
-
+				<td width="10%" class="tableleft">已上传文件</td>
+				<td>
+				<c:forEach items="${attaches}" var="a">
+					${a.newfilename};
+				</c:forEach></td>
+				<td width="10%" class="tableleft"></td>
+				<td></td>
+				<td width="10%" class="tableleft"></td>
+				<td></td>
+			</tr>
+			<tr>
 				<td colspan="6" style="text-align: center;">
 					<button type="submit" class="btn btn-primary" type="button">保存</button>
 					&nbsp;&nbsp;
