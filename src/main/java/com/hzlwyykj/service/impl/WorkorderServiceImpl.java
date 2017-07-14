@@ -108,5 +108,4 @@ public class WorkorderServiceImpl implements IWorkorderService {
 		work.setCentificatenumber(work.getCustomer().getCentificatenumber());
 		workDao.updateByPrimaryKey(work);
 	}
-
 }
