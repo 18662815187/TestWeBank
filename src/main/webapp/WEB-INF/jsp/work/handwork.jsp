@@ -142,7 +142,7 @@ body {
 			</tr>
 			<tr>
 				<td width="10%" class="tableleft">流转对象</td>
-				<td><select name="handlegroup"
+				<td><select name="work.handlegroup"
 					onchange="changeGroup(this.value)">
 						<option value="0">--请选择--</option>
 						<c:forEach items="${deptlist}" var="d">
@@ -206,7 +206,7 @@ body {
 					<c:when test="${work.status!=2 }">
 						<div class="tab-pane fade in active" id="addhandle">
 							<c:if
-								test="${sessionScope.LOGIN_USER.userid==work.handleperson }">
+								test="${sessionScope.user.userid==work.handleperson }">
 								<form action="work/handle" method="post">
 									<input type="hidden" name="workorderid"
 										value="${work.workorderid }">

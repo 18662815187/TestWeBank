@@ -156,9 +156,96 @@ public class WorkorderController {
 
 	// 更新
 	@RequestMapping("/update")
-	public String update(Workorder work) {
-		
-		
-		return null;
+	public String update(@RequestParam("files") MultipartFile[] files, Workorder work)
+			throws IllegalStateException, IOException {
+		List<Workattach> attaches = new ArrayList<>();
+		// 保存文件
+		for (MultipartFile file : files) {
+			if (!file.isEmpty()) {
+				Workattach attach = new Workattach();
+				// 旧名字
+				String oldname = file.getOriginalFilename();
+				// 获取后缀
+				int opt = oldname.lastIndexOf(".");
+				String ext = oldname.substring(opt);// 获取后缀，如.jpg
+				// 新名字，唯一的
+				String newfilename = GetId.getNewFileName() + ext;
+				System.out.println(newfilename + "*****************");
+				File newfilepath = new File("D:\\测试项目上传路径\\" + newfilename);
+				if (!newfilepath.exists()) {
+					newfilepath.mkdirs();
+				}
+				file.transferTo(newfilepath);
+				System.out.println(newfilepath + "**************");
+				attach.setNewfilename(newfilename);
+				attach.setOldfilename(oldname);
+				System.out.println(attach.getOldfilename() + "************" + attach.getNewfilename());
+				attaches.add(attach);
+			}
+		}
+		work.setAttaches(attaches);
+		workorderService.update(work);
+		return "redirect:/work/queryAll";
+	}
+
+	/**
+	 * 我的工单
+	 * 
+	 * @param model
+	 * @param vo
+	 * @return
+	 */
+	@RequestMapping("/queryMy")
+	public String queryMy(Model model, WorkConditionVo vo, HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		// Subject subject = SecurityUtils.getSubject();
+		// Userbean user = (Userbean) subject.getPrincipal();
+		vo.setHandleperson(user.getUserid());
+
+		PageInfo<Workorder> list = workorderService.query(vo);
+		model.addAttribute("pageModel", list);
+		model.addAttribute("vo", vo);
+		return "work/worklist";
+	}
+
+	/**
+	 * 本组工单
+	 * 
+	 * @param model
+	 * @param vo
+	 * @return
+	 */
+	@RequestMapping("/queryMyGroup")
+	public String queryMyGroup(Model model, WorkConditionVo vo, HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		// Subject subject = SecurityUtils.getSubject();
+		// Userbean user = (Userbean) subject.getPrincipal();
+		vo.setHandlegroup(user.getDid());
+
+		PageInfo<Workorder> list = workorderService.query(vo);
+		model.addAttribute("pageModel", list);
+		model.addAttribute("vo", vo);
+		return "work/worklist";
+	}
+
+	/**
+	 * 本组退单
+	 * 
+	 * @param model
+	 * @param vo
+	 * @return
+	 */
+	@RequestMapping("/queryMyGroupBack")
+	public String queryMyGroupBack(Model model, WorkConditionVo vo, HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		// Subject subject = SecurityUtils.getSubject();
+		// Userbean user = (Userbean) subject.getPrincipal();
+		vo.setHandlegroup(user.getDid());
+		// vo.setStatus(3);
+		// System.out.println("did====================="+userService.queryById(user.getUserid()).getDid());
+		PageInfo<Workorder> list = workorderService.query(vo);
+		model.addAttribute("pageModel", list);
+		model.addAttribute("vo", vo);
+		return "work/worklist";
 	}
 }

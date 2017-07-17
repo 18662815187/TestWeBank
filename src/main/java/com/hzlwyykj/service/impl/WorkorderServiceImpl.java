@@ -3,6 +3,8 @@ package com.hzlwyykj.service.impl;
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
+
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hzlwyykj.dao.CustomerMapper;
@@ -89,8 +91,9 @@ public class WorkorderServiceImpl implements IWorkorderService {
 	// 根据工单号更新
 	@Override
 	public void update(Workorder work) {
+		workDao.updateByPrimaryKey(work);
 		String workid = work.getWorkorderid();
-		System.out.println(workid);
+		System.out.println("********************"+workid);
 		// 更新客户表
 		customerDao.updateByPrimaryKey(work.getCustomer());
 		// 更新附件表
@@ -101,11 +104,12 @@ public class WorkorderServiceImpl implements IWorkorderService {
 				attachDao.insertSelective(attach);
 			}
 		}
-		work.setWorkorderid(workid);
-		System.out.println("***************" + work.getCustomer().getId());
-		work.setCustomerid(work.getCustomer().getId());
-		work.setCustomername(work.getCustomer().getCustomername());
-		work.setCentificatenumber(work.getCustomer().getCentificatenumber());
-		workDao.updateByPrimaryKey(work);
+//		System.out.println(JSON.toJSON(attaches));
+//		work.setWorkorderid(workid);
+//		System.out.println("***************" + work.getCustomer().getId());
+//		work.setCustomerid(work.getCustomer().getId());
+//		work.setCustomername(work.getCustomer().getCustomername());
+//		work.setCentificatenumber(work.getCustomer().getCentificatenumber());
+		
 	}
 }

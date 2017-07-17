@@ -48,11 +48,11 @@ body {
 	<form enctype="multipart/form-data" action="work/save" method="post"
 		class="definewidth m20">
 		<table class="table table-bordered table-hover definewidth m10">
-			<input type="hidden" name="workorderid" value="${work.workorderid}" />
-			<input type="hidden" name="customerid" value="${customer.id }" />
+			<input type="hidden" name="workorderid" value="${work.workorderid}"/>
+			<input type="hidden" name="customerid" value="${customer.id }"/>
 			<tr>
 				<td colspan="6">客户信息</td>
-
+				<td></td>
 			</tr>
 			<tr>
 				<td width="10%" class="tableleft">客户姓名</td>
