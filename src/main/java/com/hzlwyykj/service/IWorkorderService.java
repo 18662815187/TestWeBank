@@ -3,6 +3,7 @@ package com.hzlwyykj.service;
 import java.util.List;
 
 import com.github.pagehelper.PageInfo;
+import com.hzlwyykj.model.User;
 import com.hzlwyykj.model.WorkConditionVo;
 import com.hzlwyykj.model.Workattach;
 import com.hzlwyykj.model.Workorder;
@@ -28,7 +29,10 @@ public interface IWorkorderService {
 
 	// 根据工单号查询附件
 	List<Workattach> findAttacheByworkId(String workid);
-	
-	//根据工单号更新
+
+	// 根据工单号更新
 	void update(Workorder work);
+
+	// 处理工单
+	void updata(Workorder work, User user);
 }

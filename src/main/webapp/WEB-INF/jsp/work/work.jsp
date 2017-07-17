@@ -207,8 +207,7 @@ body {
 
     });
     function changeGroup(did){
-    	$.getJSON("<%=path%>
-	/work/queryByDid?did=" + did + "&time="
+    	$.getJSON("<%=path%>/work/queryByDid?did=" + did + "&time="
 				+ new Date(), function(json) {
 
 			$("#handleperson").empty();

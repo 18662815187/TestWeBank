@@ -36,5 +36,6 @@ public interface WorkorderMapper {
 	int findProTypeByWid(String workid);
 
 	// 通过工单号查找处理人id
-	int findHandlePerByWid(String workid);	
+	int findHandlePerByWid(String workid);
+
 }

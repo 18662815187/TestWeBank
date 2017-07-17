@@ -248,4 +248,18 @@ public class WorkorderController {
 		model.addAttribute("vo", vo);
 		return "work/worklist";
 	}
+
+	// 处理工单
+	@RequestMapping("/handle")
+	public String handle(Workorder work, Integer backhandleperson, HttpSession session) {
+		System.out.println(backhandleperson + "---back---");
+		if (work.getStatus() == 3) {
+			work.setHandleperson(backhandleperson);
+		}
+		User user = (User) session.getAttribute("user");
+		// Subject subject = SecurityUtils.getSubject();
+		// Userbean user = (Userbean) subject.getPrincipal();
+		workorderService.updata(work, user);
+		return "redirect:/work/queryAll";
+	}
 }
